@@ -23,7 +23,7 @@ input{
     margin-bottom: 1rem;
     border: none;    
 }
-#discussion{
+.inputText{
     font-size: 1.5rem;
     color: #636363;
     border-bottom: rgb(69, 153, 202) 2px solid;
