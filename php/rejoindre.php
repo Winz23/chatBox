@@ -2,15 +2,16 @@
 
 include 'bdd.php';
 
-$discutId = $_POST['discussion'];
+$chatName = $_POST['discussion'];
 
 $requete=$bdd->prepare("SELECT discut_id FROM Discussion WHERE chatName = ?");
 
-$requete->execute([$discutId]);
+$requete->execute([$chatName]);
 $join= $requete->fetch();
 
 if(empty($join) == false){
 	$join["result"] = "true";
+
 } else {
 	$join["result"] = "false";
 }
