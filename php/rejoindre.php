@@ -2,12 +2,11 @@
 
 include 'bdd.php';
 
-$rejoindre = $_POST['discut_id'];
+$discutId = $_POST['discussion'];
 
-$requete=$bdd->prepare("SELECT discut_id FROM Discussion
-");
+$requete=$bdd->prepare("SELECT discut_id FROM Discussion ");
 
-$requete->execute([$rejoindre]);
+$requete->execute([$discutId]);
 $join= $requete->fetch();
 
 if(empty($join) == false){

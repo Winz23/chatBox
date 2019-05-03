@@ -2,9 +2,12 @@
 
 include 'bdd.php';
 
-$idReunion = $_POST['discut_id'];
+$idReunion = $_POST['creer'];
 
-$requete=$bdd->prepare("SELECT discut_id FROM Discussion
+$requete=$bdd->prepare("INSERT INTO
+  `Discussion`(`chatName`,
+  `auteur_id`)
+VALUES ('?', '?')
 ");
 
 $requete->execute([$idReunion]);
