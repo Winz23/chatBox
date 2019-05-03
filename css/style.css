@@ -12,6 +12,10 @@ section{
     padding: 25px;
     border-radius: 0.8rem;
 }
+#formOne{
+    display: flex;
+    flex-direction: column;
+}
 h1{
     font-size: 1.9rem;
     font-weight: bold;
