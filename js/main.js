@@ -22,7 +22,7 @@ function onClickJoin(event){
     
         success: function(data){
            if(data.result == "true"){
-                window.location='pseudo.html';
+                window.location='pseudo.html?discut_id='+data.discut_id;
            } else {
             $(
                 '<div class="alert alert-warning">Cette discussion n\'existe pas.</div>'
