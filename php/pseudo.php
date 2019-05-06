@@ -18,8 +18,8 @@ if(array_key_exists("pseudo", $_POST)
 
 	if(empty($user) == true)
 	{
-		$requete=$bdd->prepare("INSERT INTO User (pseudo) VALUES (?)");
-		$requete->execute([$pseudo]);
+		$requete=$bdd->prepare("INSERT INTO User (pseudo, discut_id) VALUES (? , ?)");
+		$requete->execute([$pseudo, $discutId]);
 		$user = $requete->fetch();
 		$user["result"] = "true";
 	} 
