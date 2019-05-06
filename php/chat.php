@@ -3,7 +3,7 @@
 include 'bdd.php';
 
 if(array_key_exists("userMessage", $_POST) 
-&& !empty($_POST["userMessage"])
+&& !empty($_POST["userMessage"]))
 {
 
 	$message = $_POST['userMessage'];
