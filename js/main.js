@@ -5,16 +5,18 @@ $(document).ready(function(){
     $("#formThree").on("submit", onClickPseudo)
 });
 
+var discutId;
+
 
 function onClickJoin(event){
     event.preventDefault(); 
 
-    var form = $('#formOne');
+    var discussion = $('#discussion');
     
     $.ajax({
 		method: 'post',
 		url: '../php/rejoindre.php', 
-		data: form,
+		data: discussion,
 		dataType: 'json', 
     
         success: function(data){
@@ -28,57 +30,50 @@ function onClickJoin(event){
 
         },
     });
-
-
-
-
-
-
-
 }
 
 
 function onClickCreate(event){
     event.preventDefault(); 
 
-    var form = $('#formTwo');
+    var discussionName = $('#creer');
 
 
     $.ajax({
 		method: 'post',
 		url: '../php/creer.php', 
-		data: form,
+		data: discussionName,
 		dataType: 'json', 
     
         success: function(data){
             if(data.result == "true"){
-                window.location='pseudo.html';
+                discutId = data.discut_id;        
+                window.location='pseudo.html?discut_id='+discutId;
            } else {
             $(
                 '<div class="alert alert-warning">Cette discussion existe déjà.</div>'
             ).insertBefore("h1");
-           }
+           } 
         },
+        error: function(){
+            
+        }
     });
-
-
-
-
-
-
-
 }
 
 
 function onClickPseudo(event){
     event.preventDefault(); 
 
-    var form = $('#formThree');
+    var url = location.search.substring(1).split('=');
+    var discutId = url[1]; 
+    var pseudo = $('#pseudo').val();
+
 
     $.ajax({
 		method: 'post',
 		url: '../php/pseudo.php', 
-		data: form,
+		data: {pseudo: pseudo, discussionId: discutId},
 		dataType: 'json', 
     
         success: function(data){
@@ -91,12 +86,6 @@ function onClickPseudo(event){
            }
         },
     });
-
-
-
-
-
-
 }
 
 $('.fa-paper-plane').click(function(e){
@@ -107,7 +96,7 @@ $('.fa-paper-plane').click(function(e){
     if(message != ""){
         $.ajax({
             method : 'post',
-            url : 'chat.php',
+            url : '../php/chat.php',
             data : message,
             dataType : 'json'
         });

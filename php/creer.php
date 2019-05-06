@@ -14,12 +14,15 @@ if(array_key_exists("creer", $_POST)
 
 	if(empty($discussion) == true)
 	{
-		$requete=$bdd->prepare("INSERT INTO Discussion (chatName) VALUES ? ");
-		$requete->execute([$idReunion]);
-
+		$requete=$bdd->prepare("INSERT INTO Discussion (chatName, auteur_id) VALUES (?, ?) ");
+		$requete->execute([$chatName, $author=0]);
 		$discussion = $requete->fetch();
-		$discussion["result"] = "true";
+
+		$requete=$bdd->prepare("SELECT discut_id FROM Discussion WHERE chatName = ?");
+		$requete->execute([$chatName]);
+		$discussion = $requete->fetch();
 		
+		$discussion["result"] = "true";	
 	} 
 	else
 	{

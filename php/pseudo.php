@@ -4,12 +4,12 @@ include 'bdd.php';
 
 if(array_key_exists("pseudo", $_POST) 
 && !empty($_POST["pseudo"])
-&& array_key_exists("discut_id", $_POST) 
-&& !empty($_POST["discut_id"]))
+&& array_key_exists("discussionId", $_POST) 
+&& !empty($_POST["discussionId"]))
 {
 
 	$pseudo = $_POST['pseudo'];
-	$discutId = $_POST["discut_id"];
+	$discutId = $_POST['discussionId'];
 
 	$requete=$bdd->prepare("SELECT user_id FROM User WHERE pseudo = ? AND  discut_id = ?");
 
