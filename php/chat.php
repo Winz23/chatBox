@@ -1,4 +1,6 @@
 <?php
+$discutId = $_POST["discut_id"];
+$userId = $_POST["user_id"]; 
 
 include 'bdd.php';
 
@@ -7,12 +9,19 @@ if(array_key_exists("userMessage", $_POST)
 {
 
 	$message = $_POST['userMessage'];
-    $discutId = $_POST["discut_id"];
-    $userId = $_POST["user_id"]; 
+   
 
 	$requete=$bdd->prepare("INSERT INTO Message (text, discut_id, user_id) VALUES (? , ?, ?)");
 	$requete->execute([$message, $discutId, $userId]);
-	$messages = $requete->fetch();
+    
+    
 }
+
+$requete=$bdd->prepare("SELECT texte, jour, user_id, discut_id FROM Message WHERE discut_id = '?'
+ORDER BY jour");
+	$requete->execute([$discutId]);
+    $messages = $requete->fetchAll();
+    
+
 
 echo json_encode($messages);
