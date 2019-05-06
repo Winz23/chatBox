@@ -9,18 +9,23 @@ $(document).ready(function(){
 function onClickJoin(event){
     event.preventDefault(); 
 
-    var form = $('#formOne')[0];
-    var formData = new FormData(form);
+    var form = $('#formOne');
     
-
     $.ajax({
 		method: 'post',
 		url: '../php/rejoindre.php', 
-		data: formData,
+		data: form,
 		dataType: 'json', 
     
         success: function(data){
-           if(data  )
+           if(data.result == "true"){
+                window.location='pseudo.html';
+           } else {
+            $(
+                '<div class="alert alert-warning">Cette discussion n\'existe pas</div>'
+            ).insertBefore("h1");
+           }
+
         },
     });
 
@@ -36,13 +41,13 @@ function onClickJoin(event){
 function onClickCreate(event){
     event.preventDefault(); 
 
-    var form = $('#formTwo')[0];
-    var formData = new FormData(form);
+    var form = $('#formTwo');
+
 
     $.ajax({
 		method: 'post',
 		url: '../php/creer.php', 
-		data: formData,
+		data: form,
 		dataType: 'json', 
     
         success: function(data){
@@ -62,14 +67,14 @@ function onClickCreate(event){
 function onClickPseudo(event){
     event.preventDefault(); 
 
-    var form = $('#formThree')[0];
-    var formData = new FormData(form);
+    var form = $('#formThree');
+
 
 
     $.ajax({
 		method: 'post',
 		url: '../php/pseudo.php', 
-		data: formData,
+		data: form,
 		dataType: 'json', 
     
         success: function(data){
@@ -83,3 +88,20 @@ function onClickPseudo(event){
 
 
 }
+
+$('.fa-paper-plane').click(function(e){
+    e.preventDefault();
+
+    var message = encodeURIComponent( $('#msg').val() );
+
+    if(message != ""){
+        $.ajax({
+            method : 'post',
+            url : 'chat.php',
+            data : message,
+            dataType : 'json'
+        });
+
+        $('#fenetre').append("<p>" + message + "</p>");
+    }
+});
