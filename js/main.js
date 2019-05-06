@@ -8,6 +8,7 @@ $(document).ready(function(){
 
 function onClickJoin(event){
     event.preventDefault(); 
+    $(".alert-warning").remove();
 
     var form = $('#formOne');
     
@@ -40,6 +41,7 @@ function onClickJoin(event){
 
 function onClickCreate(event){
     event.preventDefault(); 
+    $(".alert-warning").remove();
 
     var form = $('#formTwo');
 
@@ -72,6 +74,7 @@ function onClickCreate(event){
 
 function onClickPseudo(event){
     event.preventDefault(); 
+    $(".alert-warning").remove();
 
     var form = $('#formThree');
 
