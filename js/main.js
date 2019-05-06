@@ -22,7 +22,7 @@ function onClickJoin(event){
                 window.location='pseudo.html';
            } else {
             $(
-                '<div class="alert alert-warning">Cette discussion n\'existe pas</div>'
+                '<div class="alert alert-warning">Cette discussion n\'existe pas.</div>'
             ).insertBefore("h1");
            }
 
@@ -51,7 +51,13 @@ function onClickCreate(event){
 		dataType: 'json', 
     
         success: function(data){
-           
+            if(data.result == "true"){
+                window.location='pseudo.html';
+           } else {
+            $(
+                '<div class="alert alert-warning">Cette discussion existe déjà.</div>'
+            ).insertBefore("h1");
+           }
         },
     });
 
@@ -69,8 +75,6 @@ function onClickPseudo(event){
 
     var form = $('#formThree');
 
-
-
     $.ajax({
 		method: 'post',
 		url: '../php/pseudo.php', 
@@ -78,7 +82,13 @@ function onClickPseudo(event){
 		dataType: 'json', 
     
         success: function(data){
-           
+            if(data.result == "true"){
+                window.location='chat.html';
+           }  else {
+            $(
+                '<div class="alert alert-warning">Ce pseudo existe déjà.</div>'
+            ).insertBefore("h1");
+           }
         },
     });
 
