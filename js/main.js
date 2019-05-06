@@ -81,7 +81,7 @@ function onClickPseudo(event){
     
         success: function(data){
             if(data.result == "true"){
-                window.location='chat.html';
+                window.location='chat.html?discut_id='+discutId;
            }  else {
             $(
                 '<div class="alert alert-warning">Ce pseudo existe déjà.</div>'
