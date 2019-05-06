@@ -10,6 +10,7 @@ var discutId;
 
 function onClickJoin(event){
     event.preventDefault(); 
+    $(".alert-warning").remove();
 
     var discussion = $('#discussion');
     
@@ -35,6 +36,7 @@ function onClickJoin(event){
 
 function onClickCreate(event){
     event.preventDefault(); 
+    $(".alert-warning").remove();
 
     var discussionName = $('#creer');
 
@@ -64,6 +66,7 @@ function onClickCreate(event){
 
 function onClickPseudo(event){
     event.preventDefault(); 
+    $(".alert-warning").remove();
 
     var url = location.search.substring(1).split('=');
     var discutId = url[1]; 
