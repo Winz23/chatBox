@@ -3,7 +3,7 @@
 $discutId = $_GET["discut_id"];
 include 'bdd.php';
 
-    $requete=$bdd->prepare("SELECT texte, jour, user_id, discut_id FROM Message WHERE discut_id = ?ORDER BY jour");
+    $requete=$bdd->prepare("SELECT User.user_id, texte, jour, pseudo FROM Message INNER JOIN User ON Message.user_id = User.user_id WHERE Message.discut_id = ? ORDER BY jour");
 	$requete->execute([$discutId]);
     $messages = $requete->fetchAll();
 

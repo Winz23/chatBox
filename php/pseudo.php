@@ -12,7 +12,6 @@ if(array_key_exists("pseudo", $_POST)
 	$discutId = $_POST['discussionId'];
 
 	$requete=$bdd->prepare("SELECT user_id FROM User WHERE pseudo = ? AND  discut_id = ?");
-
 	$requete->execute([$pseudo, $discutId]);
 	$user = $requete->fetch();
 
@@ -21,6 +20,11 @@ if(array_key_exists("pseudo", $_POST)
 		$requete=$bdd->prepare("INSERT INTO User (pseudo, discut_id) VALUES (? , ?)");
 		$requete->execute([$pseudo, $discutId]);
 		$user = $requete->fetch();
+
+		$requete=$bdd->prepare("SELECT user_id FROM User WHERE pseudo = ? AND  discut_id = ?");
+		$requete->execute([$pseudo, $discutId]);
+		$user = $requete->fetch();
+
 		$user["result"] = "true";
 	} 
 	else 
