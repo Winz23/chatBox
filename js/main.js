@@ -3,8 +3,8 @@ $(document).ready(function(){
     $("#formOne").on("submit", onClickJoin);
     $("#formTwo").on("submit", onClickCreate);
     $("#formThree").on("submit", onClickPseudo);
-    $('#envoyer').click(onClickSend)
-    
+    $('#envoyer').click(onClickSend);
+    $('#quitter').click(window.location='rejoindre.html');
 });
 
 var discutId;
