@@ -29,7 +29,8 @@ function afficherInfo(userId, discutId){
     })
 }
 
-function afficherMessage(userId){
+function afficherMessage(userId)
+{
 
     $('#bulle').html('<div>');
 
@@ -38,12 +39,11 @@ function afficherMessage(userId){
         url		    : '../php/messages.php?discut_id='+discutId, 
         dataType	: 'json',
         success: function(data)
-        { console.log(userId);
+        {
             for(var i=0; i<data.length; i++)
-            {
-                if(data.user_id == userId)
-                
-                {   ;
+            {   
+                if(data[i]['user_id'] == userId)
+                {   
                     $('#bulle').append("<div class= 'blue formPost'><div class='msgPost'><p>" + data[i]['texte'] + "</p></div> <div class='postBy'><p>Envoyé par "+data[i]['pseudo']+" le "+data[i]['jour']+"</p></div>");
                 }
                 else
