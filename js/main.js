@@ -118,7 +118,3 @@ function onClickSend(){
             }
         });
 };
-
-$('#quitter').click(function(){
-    window.location.href = 'rejoindre.html'
-})

@@ -1,5 +1,5 @@
 
-// setInterval(afficherMessage,2000);
+
 
 var url = location.search.substring(1).split('&');
 var result = [];
@@ -14,6 +14,8 @@ var userId = result[1]
 
 window.onload = afficherInfo(userId, discutId);
 
+var lastId = null;
+setInterval(afficherNewMess(lastId),2000);
 
 function afficherInfo(userId, discutId){
     $.ajax({
@@ -41,6 +43,34 @@ function afficherMessage(userId)
         {
             for(var i=0; i<data.length; i++)
             {   
+                lastId = data[i]['msg_id'];
+                
+                if(data[i]['user_id'] == userId)
+                {   
+                    $('#bulle').append("<div class= 'blue formPost'><div class='msgPost'><p>" + data[i]['texte'] + "</p></div> <div class='postBy'><p>Envoyé par "+data[i]['pseudo']+" le "+data[i]['jour']+"</p></div>");
+                }
+                else
+                {
+                    $('#bulle').append("<div class= 'grey formPost'><div class='msgPost'><p>" + data[i]['texte'] + "</p></div> <div class='postBy'><p>Envoyé par "+data[i]['pseudo']+" le "+data[i]['jour']+"</p></div>");
+                }
+            }
+            return lastId;
+        }              
+    })
+}
+console.log(afficherMessage());
+
+function afficherNewMess(lastId){
+    console.log(lastId);
+    $.ajax({
+        type		: 'POST',
+        url		    : '../php/messagesActu.php?discut_id='+discutId+'&last_id'+lastId, 
+        dataType	: 'json',
+        success: function(data)
+        {
+            for(var i=0; i<data.length; i++)
+            {   
+                lastId = data[i]['']
                 if(data[i]['user_id'] == userId)
                 {   
                     $('#bulle').append("<div class= 'blue formPost'><div class='msgPost'><p>" + data[i]['texte'] + "</p></div> <div class='postBy'><p>Envoyé par "+data[i]['pseudo']+" le "+data[i]['jour']+"</p></div>");
@@ -53,5 +83,4 @@ function afficherMessage(userId)
         }
               
     })
-
 }
