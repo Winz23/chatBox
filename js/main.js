@@ -2,7 +2,8 @@
 $(document).ready(function(){
     $("#formOne").on("submit", onClickJoin);
     $("#formTwo").on("submit", onClickCreate);
-    $("#formThree").on("submit", onClickPseudo)
+    $("#formThree").on("submit", onClickPseudo);
+    $('#envoyer').click(onClickSend)
 });
 
 var discutId;
@@ -91,19 +92,29 @@ function onClickPseudo(event){
     });
 }
 
-$('.fa-paper-plane').click(function(e){
-    e.preventDefault();
+function onClickSend(){
+    
+    var url = location.search.substring(1).split('&');
+    var result = [];
 
-    var message = encodeURIComponent( $('#msg').val() );
+    for (var i=0; i<url.length; i++) 
+    {
+    var donnée = url[i].split('=');
+    result[i]=donnée[1];
+    }
+    var discutId = result[0];
+    var userId = result[1]
+    
+    
+    var message = $('#msg').val();
 
-    if(message != ""){
         $.ajax({
             method : 'post',
-            url : '../php/chat.php',
-            data : message,
-            dataType : 'json'
+            url : '../php/chat.php?discut_id='+discutId+'&user_id='+userId,
+            data : {message: message},
+            dataType : 'json',
+            success: function(data){
+                location.reload();
+            }
         });
-
-        $('#fenetre').append("<p>" + message + "</p>");
-    }
-});
+};

@@ -29,7 +29,7 @@ function afficherMessage(){
                     $('#fenetre').append("<div class= 'grey formPost'><div class='msgPost'><p>" + data[i]['texte'] + "</p></div> <div class='postBy'><p>Envoyé par "+data[i]['pseudo']+" le "+data[i]['jour']+"</p></div>");
                 }
             }  
-        }      
+        }     
     })
 
     $.ajax({
@@ -42,6 +42,5 @@ function afficherMessage(){
             $('#chatName').text(data.chatName);
         }      
     })
-
 
 }
