@@ -4,6 +4,7 @@ $(document).ready(function(){
     $("#formTwo").on("submit", onClickCreate);
     $("#formThree").on("submit", onClickPseudo);
     $('#envoyer').click(onClickSend)
+    
 });
 
 var discutId;

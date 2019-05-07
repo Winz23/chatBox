@@ -42,6 +42,11 @@ a{
     text-align: center;
     color: rgb(69, 153, 202);
 }
+#fenetre{
+    width: 70%;
+    height: 600px;
+    overflow: auto;
+}
 .blue{
     
 }
