@@ -4,7 +4,6 @@ $(document).ready(function(){
     $("#formTwo").on("submit", onClickCreate);
     $("#formThree").on("submit", onClickPseudo);
     $('#envoyer').click(onClickSend)
-    
 });
 
 var discutId;
@@ -119,3 +118,7 @@ function onClickSend(){
             }
         });
 };
+
+$('#quitter').click(function(){
+    window.location.href = 'rejoindre.html'
+})

@@ -48,7 +48,7 @@ a{
 #fenetre{
     width: 70%;
     height: 600px;
-    overflow: auto;
+    overflow-y: auto;
     margin: 0;
 }
 textarea{
@@ -61,12 +61,27 @@ textarea{
    padding: 1%;
 }
 
-/* .blue{
-    
+.blue .msgPost{
+    background-color: rgb(0, 133, 133);
+    color: white;
+    padding: 1%;
+    border-radius: 1rem;  
+    display: inline-block;
+}
+
+.grey .msgPost{
+    background-color: rgb(158, 158, 158);
+    color: black;
+    padding: 1%;
+    border-radius: 1rem;  
+    display: inline-block;
+}
+.blue {
+    text-align: right;
 }
 .grey{
-
-} */
+    text-align: left;
+}
 .fa-paper-plane{
     padding: 15px;
     border-radius: 50%;
@@ -76,6 +91,9 @@ textarea{
     position: relative;
     left: 350px;
     bottom: 80px;
+}
+.msgPost p{
+    margin:0;
 }
 #envoyer{
     height: 2px;
