@@ -31,7 +31,6 @@ function afficherInfo(userId, discutId){
 
 function afficherMessage(userId)
 {
-
     $('#bulle').html('<div>');
 
     $.ajax({
